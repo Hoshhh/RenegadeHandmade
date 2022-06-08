@@ -1,11 +1,15 @@
+import { Box } from '@mui/material';
 import React from 'react';
 import './App.css';
+import Hero from './components/Hero';
+import Navbar from './components/Navbar';
 
 function App() {
   return (
-    <div className="App">
-      Test
-    </div>
+    <Box className='App'>
+      <Navbar />
+      <Hero/>
+    </Box>
   );
 }
 
