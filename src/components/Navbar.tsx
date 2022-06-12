@@ -10,7 +10,7 @@ const Icons = styled(Box)({
   display: "flex",
   gap: "40px",
   marginLeft: "40px",
-  marginRight: "20px"
+  marginRight: "20px",
 })
 
 const Navbar = () => {
