@@ -1,5 +1,5 @@
 import { Facebook, ShoppingCart } from '@mui/icons-material'
-import { AppBar, Badge, Box, Button, styled, Toolbar, Typography } from '@mui/material'
+import { AppBar, Badge, Box, Button, IconButton, styled, Toolbar, Typography } from '@mui/material'
 
 const StyledToolbar = styled(Toolbar)({
   display: "flex",
@@ -8,7 +8,7 @@ const StyledToolbar = styled(Toolbar)({
 
 const Icons = styled(Box)({
   display: "flex",
-  gap: "40px",
+  gap: "30px",
   marginLeft: "40px",
   marginRight: "20px",
 })
@@ -17,14 +17,18 @@ const Navbar = () => {
   return (
     <AppBar position="sticky" sx={{ backgroundColor: "rgba(255,255,255,0)", boxShadow: "none"}}>
       <StyledToolbar>
-        <Typography variant="h6" color="black" sx={{ display: { xs: "none", sm: "block"}, marginLeft: "20px" }}>Renegade Handmade</Typography>
+        <Typography variant="h6" color="black" sx={{ display: { xs: "none", sm: "block"}, marginLeft: "20px", fontSize: "1.4em" }}>Renegade<span style={{ color: "#16a085"}}>Handmade</span></Typography>
         <Typography variant="h6" color="black" sx={{ display: { xs: "block", sm: "none"}, marginLeft: "20px" }}>Renegade</Typography>
-        <Button variant="contained" size="small" sx={{ margin: "auto", marginRight: "0px", backgroundColor: "black"}}>Contact</Button>
+        <Button variant="contained" size="small" sx={{ margin: "auto", marginRight: "0px", backgroundColor: "black", '&:hover': {backgroundColor: "#34495e"}}}>Contact</Button>
         <Icons>
-          <Facebook fontSize="large" htmlColor='black'/>
-          <Badge badgeContent={3} color="error">
-            <ShoppingCart fontSize="large" htmlColor='black'/>
-          </Badge>
+          <IconButton>
+            <Facebook fontSize="large" htmlColor='black'/>
+          </IconButton>
+          <IconButton>
+            <Badge badgeContent={3} color="error">
+              <ShoppingCart fontSize="large" htmlColor='black'/>
+            </Badge>
+          </IconButton>
         </Icons>
       </StyledToolbar>
     </AppBar>
