@@ -1,20 +1,26 @@
 import { Card, CardContent, CardMedia, Paper, Rating, Typography } from '@mui/material'
 import React from 'react'
 
-const ProductCard = () => {
+type ProductCardProps = {
+  productName: string,
+  img: string,
+  price: number
+}
+
+const ProductCard = (props: ProductCardProps) => {
   return (
     <Paper elevation={3}>
         <Card sx={{ backgroundColor: "#F1EFF1", minHeight: "350px" }}>
             <CardMedia 
                 component="img"
                 height="230px"
-                image="Images\ProductExamples\cuttingboard0.jpg"
+                image={props.img}
                 sx={{ marginBottom: "6px"}}
             />
             <CardContent sx={{ paddingBottom: "16px"}}>
-                <Typography>Cutting Board</Typography>
+                <Typography>{props.productName}</Typography>
                 <Rating sx ={{ color: "#16a085" }} />
-                <Typography>$50.00</Typography>
+                <Typography>${props.price}</Typography>
             </CardContent>
         </Card>
     </Paper>
