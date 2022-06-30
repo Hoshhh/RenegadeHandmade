@@ -1,17 +1,19 @@
-import { Box } from '@mui/material';
 import React from 'react';
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import './App.css';
-import FeaturedProducts from './components/FeaturedProducts';
-import Hero from './components/Hero';
 import Navbar from './components/Navbar';
+import HomePage from './pages/HomePage';
+import ProductsPage from './pages/ProductsPage';
 
 function App() {
   return (
-    <Box className='App'>
+    <Router>
       <Navbar />
-      <Hero/>
-      <FeaturedProducts />
-    </Box>
+      <Routes>
+        <Route path="/" element={<HomePage/>} />
+        <Route path="/products" element={<ProductsPage />} />
+      </Routes>
+    </Router>
   );
 }
 
