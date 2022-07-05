@@ -1,6 +1,7 @@
 import { Box, Button, Stack, styled, Typography } from '@mui/material'
 import { Container } from '@mui/system'
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Buttons = styled(Button)({
   marginLeft: "10px",
@@ -17,7 +18,9 @@ const Hero = () => {
           <Typography variant='h1' sx={{ fontSize: { xs: "4rem", sm: "4rem", md: "3rem", lg: "4rem", xl: "4.5rem"}, marginBottom: "10px" }}>One-of-a-kind, <span style={{ color: "#16a085"}}>Handmade</span> Décor and Furniture.</Typography>
           <Typography variant="h6" sx={{ marginBottom: "10px" }}> Choose between pre-made items or have something completely custom built.</Typography>
           <Container sx={{ display: "block" }}>
-            <Buttons variant='contained' sx={{ backgroundColor: "#16a085", '&:hover': {backgroundColor: "#1abc9c"} }}>Browse</Buttons>
+            <Link to="/products" style={{ textDecoration: "none" }} >
+              <Buttons variant='contained' sx={{ backgroundColor: "#16a085", '&:hover': {backgroundColor: "#1abc9c"} }}>Browse</Buttons>
+            </Link>
             <Buttons variant='contained'>Custom Work</Buttons>
           </Container>
         </Box>
