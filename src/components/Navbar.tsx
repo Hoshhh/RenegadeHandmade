@@ -1,6 +1,7 @@
 import { Facebook, ShoppingCart } from '@mui/icons-material'
 import { AppBar, Badge, Box, Button, IconButton, styled, Toolbar, Typography } from '@mui/material'
 import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 const StyledToolbar = styled(Toolbar)({
   display: "flex",
@@ -15,6 +16,8 @@ const Icons = styled(Box)({
 })
 
 const Navbar = () => {
+  const numberOfItems = useSelector((state) => state["cart"].numberOfItems)
+
   return (
     <AppBar position="sticky" sx={{ backgroundColor: "rgba(255,255,255,0)", boxShadow: "none"}}>
       <StyledToolbar>
@@ -28,7 +31,7 @@ const Navbar = () => {
             <Facebook fontSize="large" htmlColor='black'/>
           </IconButton>
           <IconButton>
-            <Badge badgeContent={3} color="error">
+            <Badge badgeContent={numberOfItems} color="error">
               <ShoppingCart fontSize="large" htmlColor='black'/>
             </Badge>
           </IconButton>
