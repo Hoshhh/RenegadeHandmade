@@ -9,6 +9,7 @@ import ProductsPage from './pages/ProductsPage';
 import { useDispatch } from 'react-redux'
 import { updateBadge } from './redux/cartSlice'
 
+
 function App() {
   const [products, setProducts] = useState([])
   const dispatch = useDispatch()
@@ -31,7 +32,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/products" element={<ProductsPage />} />
+        <Route path="/products" element={<ProductsPage products={products} />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </Router>
