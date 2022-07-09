@@ -4,7 +4,7 @@ import cartReducer from "../redux/cartSlice"
 
 export const store = configureStore({
     reducer: {
-        cart: cartReducer,
+        cart: cartReducer
     },
     //middleware: [thunkMiddleware]
 })

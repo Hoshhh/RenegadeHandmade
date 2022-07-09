@@ -8,31 +8,51 @@ import HomePage from './pages/HomePage';
 import ProductsPage from './pages/ProductsPage';
 import { useDispatch } from 'react-redux'
 import { updateBadge } from './redux/cartSlice'
+import SingleProductPage from './pages/SingleProductPage';
 
 
 function App() {
   const [products, setProducts] = useState([])
+  const [cart, setCart] = useState({})
   const dispatch = useDispatch()
 
   const fetchProducts = async () => {
     const { data } = await commerce.products.list()
 
     setProducts(data)
-    return dispatch(updateBadge(data.length))
+    //return dispatch(updateBadge(data.length))
+  }
+
+  const fetchCart = async () => {
+    const cart = await commerce.cart.retrieve()
+    setCart(cart)
+    //console.log(cart)
+
+    return dispatch(updateBadge(cart.total_items))
+  }
+
+  const handleAddToCart = async (productId: string, quantity: number) => {
+    const item = await commerce.cart.add(productId, quantity)
+    setCart(item.cart)
+
+    fetchCart()
   }
 
   useEffect(() => {
     fetchProducts()
+    fetchCart()
   }, [])
 
-  console.log(products)
+  //console.log(cart)
+  //console.log(products)
 
   return (
     <Router>
       <Navbar />
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/products" element={<ProductsPage products={products} />} />
+        <Route path="/" element={<HomePage onAddToCart={handleAddToCart} />} />
+        <Route path="/products" element={<ProductsPage products={products} onAddToCart={handleAddToCart} />} />
+        <Route path="/products/:id" element={<SingleProductPage products={products} />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </Router>

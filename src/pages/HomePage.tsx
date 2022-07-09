@@ -4,11 +4,15 @@ import FeaturedProducts from '../components/FeaturedProducts'
 import Hero from '../components/Hero'
 import Navbar from '../components/Navbar'
 
-const HomePage = () => {
+type HomeProps = {
+  onAddToCart:any
+}
+
+const HomePage = (props: HomeProps) => {
   return (
     <Box className='App'>
         <Hero />
-        <FeaturedProducts />
+        <FeaturedProducts onAddToCart={props.onAddToCart} />
     </Box>
   )
 }
