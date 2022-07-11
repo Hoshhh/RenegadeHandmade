@@ -30,11 +30,13 @@ const Navbar = () => {
           <IconButton>
             <Facebook fontSize="large" htmlColor='black'/>
           </IconButton>
-          <IconButton>
-            <Badge badgeContent={numberOfItems} color="error">
-              <ShoppingCart fontSize="large" htmlColor='black'/>
-            </Badge>
-          </IconButton>
+          <Link to="/cart" style={{ textDecoration: "none" }} >
+            <IconButton>
+              <Badge badgeContent={numberOfItems} color="error">
+                <ShoppingCart fontSize="large" htmlColor='black'/>
+              </Badge>
+            </IconButton>
+          </Link>
         </Icons>
       </StyledToolbar>
     </AppBar>
