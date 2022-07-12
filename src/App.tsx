@@ -14,7 +14,10 @@ import CartPage from './pages/CartPage';
 
 function App() {
   const [products, setProducts] = useState([])
-  const [cart, setCart] = useState({})
+  const [cart, setCart] = useState({
+    line_items:[],
+    subtotal:{}
+  })
   const dispatch = useDispatch()
 
   const fetchProducts = async () => {
@@ -44,7 +47,7 @@ function App() {
     fetchCart()
   }, [])
 
-  //console.log(cart)
+  console.log(cart)
   //console.log(products)
 
   return (
@@ -54,7 +57,7 @@ function App() {
         <Route path="/" element={<HomePage onAddToCart={handleAddToCart} />} />
         <Route path="/products" element={<ProductsPage products={products} onAddToCart={handleAddToCart} />} />
         <Route path="/products/:id" element={<SingleProductPage products={products} />} />
-        <Route path="/cart" element={<CartPage />} />
+        <Route path="/cart" element={<CartPage cart={cart} />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </Router>
