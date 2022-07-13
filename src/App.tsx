@@ -42,6 +42,27 @@ function App() {
     fetchCart()
   }
 
+  const handleRemoveFromCart = async (productId: string) => {
+    const item = await commerce.cart.remove(productId)
+    setCart(item.cart)
+
+    fetchCart()
+  }
+
+  const handleEmptyCart = async () => {
+    const item = await commerce.cart.empty()
+    setCart(item.cart)
+
+    fetchCart()
+  }
+
+  const handleUpdateCartQty = async (productId: string, quantity: number) => {
+    const item = await commerce.cart.update(productId, {quantity})
+    setCart(item.cart)
+
+    fetchCart()
+  }
+
   useEffect(() => {
     fetchProducts()
     fetchCart()
@@ -56,8 +77,8 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage onAddToCart={handleAddToCart} />} />
         <Route path="/products" element={<ProductsPage products={products} onAddToCart={handleAddToCart} />} />
-        <Route path="/products/:id" element={<SingleProductPage products={products} />} />
-        <Route path="/cart" element={<CartPage cart={cart} />} />
+        <Route path="/products/:id" element={<SingleProductPage products={products} onAddToCart={handleAddToCart}/>} />
+        <Route path="/cart" element={<CartPage cart={cart} handleRemoveFromCart={handleRemoveFromCart} handleEmptyCart={handleEmptyCart} handleUpdateCartQty={handleUpdateCartQty} />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </Router>

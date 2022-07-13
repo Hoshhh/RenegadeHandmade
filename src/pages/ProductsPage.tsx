@@ -16,7 +16,12 @@ const ProductsPage = (props: ProductsProps) => {
         {
           props.products.map((product, index) => (
             <Grid item xs={12} sm={6} md={4} lg={3}>
-              <ProductCard p={index} productName={product.name} img={product.image.url} price={product.price.formatted_with_symbol} productId={product.id} onAddToCart={props.onAddToCart}></ProductCard>
+              <ProductCard 
+                p={index} 
+                productName={product.name} 
+                img={product.image.url} 
+                price={product.price.formatted_with_symbol} 
+                productId={product.id} onAddToCart={props.onAddToCart}></ProductCard>
             </Grid>
           ))
         }

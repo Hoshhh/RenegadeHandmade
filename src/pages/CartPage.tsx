@@ -3,7 +3,10 @@ import React from 'react'
 import CartItem from '../components/CartItem';
 
 type CartProps = {
-  cart: { line_items: any[], subtotal: any };
+  cart: { line_items: any[], subtotal: any },
+  handleRemoveFromCart: any,
+  handleEmptyCart: any,
+  handleUpdateCartQty: any
 }
 
 const Buttons = styled(Button)({
@@ -16,7 +19,10 @@ const Buttons = styled(Button)({
 })
 
 const CartPage = (props: CartProps) => {
-    const isEmpty = !props.cart.line_items
+    let isEmpty = !props.cart.line_items
+    if (props.cart.line_items.length<1) {
+        isEmpty = true
+    }
     console.log(isEmpty)
 
     const EmptyCart = () => {
@@ -32,7 +38,15 @@ const CartPage = (props: CartProps) => {
                     {
                         props.cart.line_items.map((item) => (
                             <Grid item xs={12} key={item.id}>
-                                <CartItem img={item.image.url} name={item.name} quantity={item.quantity} price={item.price.raw} id={item.id} />
+                                <CartItem 
+                                    img={item.image.url} 
+                                    name={item.name} 
+                                    quantity={item.quantity} 
+                                    price={item.price.raw} 
+                                    id={item.id} 
+                                    handleUpdateCartQty={props.handleUpdateCartQty}
+                                    handleRemoveFromCart={props.handleRemoveFromCart}
+                                />
                             </Grid>
                         ))
                     }
@@ -42,7 +56,7 @@ const CartPage = (props: CartProps) => {
                         <Typography variant="h4">Subtotal: {props.cart.subtotal.formatted_with_symbol}</Typography>
                     </Container>
                     <Container sx={{ marginLeft: "auto", marginRight: {xs: "auto", sm: "0"}, width: "70%", display: "flex"}}>
-                        <Buttons variant='contained'>Empty</Buttons>
+                        <Buttons variant='contained' onClick={props.handleEmptyCart}>Empty</Buttons>
                         <Buttons variant='contained' sx={{ backgroundColor: "#16a085", '&:hover': {backgroundColor: "#1abc9c"} }}>Checkout</Buttons>
                     </Container>
                 </Container>

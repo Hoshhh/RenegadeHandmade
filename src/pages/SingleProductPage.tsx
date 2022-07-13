@@ -5,14 +5,26 @@ import { useParams } from 'react-router-dom'
 
 type ProductProps = {
   products: any[],
+  onAddToCart: any
 }
 
 const SingleProductPage = (props: ProductProps) => {
     const { id } = useParams()
     const [image, setImage] = useState(props.products[id].assets[0].url)
+    const [qty, setQty] = useState(1)
 
     const handleImageChange = (imgUrl: string) => {
         setImage(imgUrl)
+    }
+
+    const addQuantity = () => {
+        setQty(qty + 1)
+    }
+
+    const subtractQuantity = () => {
+        if (qty > 1) {
+            setQty(qty - 1)
+        }
     }
 
     console.log(props.products[id])
@@ -38,15 +50,15 @@ const SingleProductPage = (props: ProductProps) => {
             <Typography variant="h5" style={{ marginBottom: "0.8em" }}>{props.products[id].price.formatted_with_symbol}</Typography>
             <Container disableGutters sx={{ display: "flex" }}>
                 <Container disableGutters sx={{ display: "flex", alignItems: "center" }}>
-                    <IconButton>
+                    <IconButton onClick={subtractQuantity}>
                         <Remove />
                     </IconButton>
-                    <span style={{ width: "24px", height: "24px", borderRadius: "10px", border: "1px solid #1abc9c", display: "flex", alignItems: "center", justifyContent:"center" }}>1</span>
-                    <IconButton>
+                    <span style={{ width: "24px", height: "24px", borderRadius: "10px", border: "1px solid #1abc9c", display: "flex", alignItems: "center", justifyContent:"center" }}>{qty}</span>
+                    <IconButton onClick={addQuantity}>
                         <Add />
                     </IconButton>
                 </Container>
-                <Button sx={{ backgroundColor: "#16a085", '&:hover': {backgroundColor: "#1abc9c"}, color: "white", lineHeight: "1", marginRight: "30%" }}>Add to Cart</Button>
+                <Button sx={{ backgroundColor: "#16a085", '&:hover': {backgroundColor: "#1abc9c"}, color: "white", lineHeight: "1", marginRight: "30%" }} onClick={() => props.onAddToCart(props.products[id].id, qty)}>Add to Cart</Button>
             </Container>
         </Box>
     </Stack>

@@ -7,7 +7,9 @@ type ItemProps = {
     name: string,
     quantity: number,
     price: number,
-    id: string
+    id: string,
+    handleUpdateCartQty: any,
+    handleRemoveFromCart: any
 }
 
 const CartItem = (props: ItemProps) => {
@@ -21,11 +23,11 @@ const CartItem = (props: ItemProps) => {
             </Container>
             <Container>
                 <Container disableGutters sx={{ display: "flex", alignItems: "center" }}>
-                    <IconButton>
+                    <IconButton onClick={() => props.handleUpdateCartQty(props.id, props.quantity - 1)}>
                         <Remove />
                     </IconButton>
                     <span style={{ width: "24px", height: "24px", borderRadius: "10px", border: "1px solid #1abc9c", display: "flex", alignItems: "center", justifyContent:"center" }}>{props.quantity}</span>
-                    <IconButton>
+                    <IconButton onClick={() => props.handleUpdateCartQty(props.id, props.quantity + 1)}>
                         <Add />
                     </IconButton>
                 </Container>
