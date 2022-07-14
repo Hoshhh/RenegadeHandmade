@@ -10,6 +10,7 @@ import { useDispatch } from 'react-redux'
 import { updateBadge } from './redux/cartSlice'
 import SingleProductPage from './pages/SingleProductPage';
 import CartPage from './pages/CartPage';
+import CheckoutPage from './pages/Checkout/CheckoutPage';
 
 
 function App() {
@@ -79,6 +80,7 @@ function App() {
         <Route path="/products" element={<ProductsPage products={products} onAddToCart={handleAddToCart} />} />
         <Route path="/products/:id" element={<SingleProductPage products={products} onAddToCart={handleAddToCart}/>} />
         <Route path="/cart" element={<CartPage cart={cart} handleRemoveFromCart={handleRemoveFromCart} handleEmptyCart={handleEmptyCart} handleUpdateCartQty={handleUpdateCartQty} />} />
+        <Route path="/checkout" element={<CheckoutPage />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </Router>

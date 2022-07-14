@@ -1,5 +1,6 @@
 import { Container, Grid, styled, Typography, Button } from '@mui/material'
 import React from 'react'
+import { Link } from 'react-router-dom';
 import CartItem from '../components/CartItem';
 
 type CartProps = {
@@ -57,7 +58,9 @@ const CartPage = (props: CartProps) => {
                     </Container>
                     <Container sx={{ marginLeft: "auto", marginRight: {xs: "auto", sm: "0"}, width: "70%", display: "flex"}}>
                         <Buttons variant='contained' onClick={props.handleEmptyCart}>Empty</Buttons>
-                        <Buttons variant='contained' sx={{ backgroundColor: "#16a085", '&:hover': {backgroundColor: "#1abc9c"} }}>Checkout</Buttons>
+                        <Link to="/checkout" style={{ textDecoration: "none" }} >
+                            <Buttons variant='contained' sx={{ backgroundColor: "#16a085", '&:hover': {backgroundColor: "#1abc9c"} }}>Checkout</Buttons>
+                        </Link>
                     </Container>
                 </Container>
             </>
