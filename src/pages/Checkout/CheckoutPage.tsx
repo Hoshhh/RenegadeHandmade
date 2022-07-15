@@ -1,17 +1,48 @@
 import { Container, Paper, Step, StepLabel, Stepper, Typography } from '@mui/material'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import AddressForm from './CheckoutForm/AddressForm'
 import PaymentForm from './CheckoutForm/PaymentForm'
+import { commerce } from '../../lib/commerce'
 
 const steps = ['Shipping Address', 'Payment Details']
 
-const CheckoutPage = () => {
+type CheckoutProps = {
+  cart: any
+}
+
+const CheckoutPage = (props: CheckoutProps) => {
     const [activeStep, setActiveStep] = useState(0)
+    const [checkoutToken, setCheckoutToken] = useState(null)
+    const [shippingData, setShippingData] = useState({})
+
+    useEffect(() => {
+        const generateToken = async () => {
+            try {
+                const token = await commerce.checkout.generateToken(props.cart.id, {type: 'cart'})
+                setCheckoutToken(token)
+            } catch (error) {
+
+            }
+        }
+
+        generateToken()
+    }, [props.cart])
+
+    const nextStep = () => setActiveStep((prevActiveStep) => prevActiveStep + 1)
+    //const backStep = () => setActiveStep((prevActiveStep) => prevActiveStep - 1)
+
+    const next = (data) => {
+        setShippingData(data)
+
+        nextStep()
+    }
 
     const Confirmation = () => (
         <div>Confirmation</div>
     )
-    const Form = () => activeStep === 0 ? <AddressForm /> : <PaymentForm />
+    const Form = () => activeStep === 0 
+        ? <AddressForm checkoutToken={checkoutToken} next={next}/> 
+        : <PaymentForm shippingData={shippingData} />
 
   return (
     <>
@@ -28,7 +59,7 @@ const CheckoutPage = () => {
                     }
                 </Stepper>
                 {
-                    activeStep === steps.length ? <Confirmation /> : <Form />
+                    activeStep === steps.length ? <Confirmation /> : checkoutToken && <Form />
                 }
             </Paper>
         </Container>

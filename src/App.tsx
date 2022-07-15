@@ -80,7 +80,7 @@ function App() {
         <Route path="/products" element={<ProductsPage products={products} onAddToCart={handleAddToCart} />} />
         <Route path="/products/:id" element={<SingleProductPage products={products} onAddToCart={handleAddToCart}/>} />
         <Route path="/cart" element={<CartPage cart={cart} handleRemoveFromCart={handleRemoveFromCart} handleEmptyCart={handleEmptyCart} handleUpdateCartQty={handleUpdateCartQty} />} />
-        <Route path="/checkout" element={<CheckoutPage />} />
+        <Route path="/checkout" element={<CheckoutPage cart={cart} />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </Router>
