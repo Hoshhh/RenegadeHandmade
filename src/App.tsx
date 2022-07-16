@@ -62,6 +62,7 @@ function App() {
     const newCart = await commerce.cart.refresh()
 
     setCart(newCart)
+    return dispatch(updateBadge(newCart.total_items))
   }
 
   const handleCaptureCheckout = async (checkoutTokenId, newOrder) => {
