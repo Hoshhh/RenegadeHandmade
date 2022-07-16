@@ -13,7 +13,7 @@ const FormInput = (props: PropTypes) => {
   return (
     <Grid item xs={12} sm={6}>
         <Controller 
-          render={({ field }) => <TextField { ...field } label={props.label} fullWidth required/> }
+          render={({ field }) => (<TextField { ...field } label={props.label} fullWidth required/> )}
           control={control}
           defaultValue=""
           name={props.name}

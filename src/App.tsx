@@ -19,19 +19,20 @@ function App() {
     line_items:[],
     subtotal:{}
   })
+  const [order, setOrder] = useState({})
+  const [errorMessage, setErrorMessage] = useState("")
+
   const dispatch = useDispatch()
 
   const fetchProducts = async () => {
     const { data } = await commerce.products.list()
 
     setProducts(data)
-    //return dispatch(updateBadge(data.length))
   }
 
   const fetchCart = async () => {
     const cart = await commerce.cart.retrieve()
     setCart(cart)
-    //console.log(cart)
 
     return dispatch(updateBadge(cart.total_items))
   }
@@ -57,6 +58,24 @@ function App() {
     fetchCart()
   }
 
+  const refreshCart = async () => {
+    const newCart = await commerce.cart.refresh()
+
+    setCart(newCart)
+  }
+
+  const handleCaptureCheckout = async (checkoutTokenId, newOrder) => {
+    try {
+      const incomingOrder = await commerce.checkout.capture(checkoutTokenId, newOrder)
+
+      setOrder(incomingOrder)
+
+      refreshCart()
+    } catch (error) {
+      setErrorMessage(error.data.error.message)
+    }
+  }
+
   const handleUpdateCartQty = async (productId: string, quantity: number) => {
     const item = await commerce.cart.update(productId, {quantity})
     setCart(item.cart)
@@ -69,7 +88,7 @@ function App() {
     fetchCart()
   }, [])
 
-  console.log(cart)
+  console.log(order)
   //console.log(products)
 
   return (
@@ -80,7 +99,7 @@ function App() {
         <Route path="/products" element={<ProductsPage products={products} onAddToCart={handleAddToCart} />} />
         <Route path="/products/:id" element={<SingleProductPage products={products} onAddToCart={handleAddToCart}/>} />
         <Route path="/cart" element={<CartPage cart={cart} handleRemoveFromCart={handleRemoveFromCart} handleEmptyCart={handleEmptyCart} handleUpdateCartQty={handleUpdateCartQty} />} />
-        <Route path="/checkout" element={<CheckoutPage cart={cart} />} />
+        <Route path="/checkout" element={<CheckoutPage cart={cart} order={order} onCaptureCheckout={handleCaptureCheckout} error={errorMessage}/>} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </Router>

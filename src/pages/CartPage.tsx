@@ -24,7 +24,6 @@ const CartPage = (props: CartProps) => {
     if (props.cart.line_items.length<1) {
         isEmpty = true
     }
-    console.log(isEmpty)
 
     const EmptyCart = () => {
         return (

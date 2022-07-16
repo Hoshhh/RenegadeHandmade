@@ -1,13 +1,17 @@
-import { Container, Paper, Step, StepLabel, Stepper, Typography } from '@mui/material'
+import { Button, CircularProgress, Container, Divider, Paper, Step, StepLabel, Stepper, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import AddressForm from './CheckoutForm/AddressForm'
 import PaymentForm from './CheckoutForm/PaymentForm'
 import { commerce } from '../../lib/commerce'
+import { Link } from 'react-router-dom'
 
 const steps = ['Shipping Address', 'Payment Details']
 
 type CheckoutProps = {
-  cart: any
+  cart: any,
+  order: any,
+  onCaptureCheckout: any,
+  error: any
 }
 
 const CheckoutPage = (props: CheckoutProps) => {
@@ -20,8 +24,9 @@ const CheckoutPage = (props: CheckoutProps) => {
             try {
                 const token = await commerce.checkout.generateToken(props.cart.id, {type: 'cart'})
                 setCheckoutToken(token)
+                console.log(checkoutToken)
             } catch (error) {
-
+                console.log(error)
             }
         }
 
@@ -29,7 +34,7 @@ const CheckoutPage = (props: CheckoutProps) => {
     }, [props.cart])
 
     const nextStep = () => setActiveStep((prevActiveStep) => prevActiveStep + 1)
-    //const backStep = () => setActiveStep((prevActiveStep) => prevActiveStep - 1)
+    const backStep = () => setActiveStep((prevActiveStep) => prevActiveStep - 1)
 
     const next = (data) => {
         setShippingData(data)
@@ -37,12 +42,40 @@ const CheckoutPage = (props: CheckoutProps) => {
         nextStep()
     }
 
-    const Confirmation = () => (
-        <div>Confirmation</div>
-    )
+    let Confirmation = () => props.order.customer ? (
+        <>
+            <div>
+                <Typography variant="h5">Thank you for your purchase, </Typography>
+                <Divider />
+                <Typography variant="subtitle2">Order ref: </Typography>
+                <br/>
+                <Button component={Link} to="/" type="button">Back to Home</Button>
+            </div>
+        </>
+    ) : (
+        <div style={{ display: "flex", justifyContent: "center", alignItems: "center"}}>
+            <CircularProgress />
+        </div>
+    );
+
+    if(props.error) {
+        <>
+            <Typography variant="h5">Error: {props.error}</Typography>
+            <br/>
+            <Button component={Link} to="/" type="button">Back to Home</Button>
+        </>
+    }
+
+    console.log(props.order)
     const Form = () => activeStep === 0 
         ? <AddressForm checkoutToken={checkoutToken} next={next}/> 
-        : <PaymentForm shippingData={shippingData} />
+        : <PaymentForm 
+            shippingData={shippingData} 
+            checkoutToken={checkoutToken} 
+            backStep={backStep} 
+            onCaptureCheckout={props.onCaptureCheckout}
+            nextStep={nextStep}
+        />
 
   return (
     <>
