@@ -21,7 +21,9 @@ const Hero = () => {
             <Link to="/products" style={{ textDecoration: "none" }} >
               <Buttons variant='contained' sx={{ backgroundColor: "#16a085", '&:hover': {backgroundColor: "#1abc9c"} }}>Browse</Buttons>
             </Link>
-            <Buttons variant='contained'>Custom Work</Buttons>
+            <Link to="/contact" style={{ textDecoration: "none" }} >
+              <Buttons variant='contained'>Custom Work</Buttons>
+            </Link>
           </Container>
         </Box>
         <Box flex={5} bgcolor="#F1EFF1" padding={2} sx={{ display: { xs: "none", sm: "none", md: "flex"}, minHeight: "90vh" }}>

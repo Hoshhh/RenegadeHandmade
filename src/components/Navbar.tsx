@@ -25,9 +25,10 @@ const Navbar = () => {
           <Typography variant="h6" color="black" sx={{ display: { xs: "none", sm: "block"}, marginLeft: "20px", fontSize: "1.4em" }}>Renegade<span style={{ color: "#16a085"}}>Handmade</span></Typography>
           <Typography variant="h6" color="black" sx={{ display: { xs: "block", sm: "none"}, marginLeft: "20px" }}>Renegade</Typography>
         </Link>
-        <Button variant="contained" size="small" sx={{ margin: "auto", marginRight: "0px", backgroundColor: "black", '&:hover': {backgroundColor: "#34495e"}}}>Contact</Button>
-        <Icons>
-          <IconButton>
+        <div style={{ display: 'flex'}}>
+          <Button component={Link} to='/contact' variant="contained" size="small" sx={{ margin: "auto", marginRight: "0px", backgroundColor: "black", '&:hover': {backgroundColor: "#34495e"}}}>Contact</Button>
+          <Icons>
+          <IconButton href='https://www.facebook.com/RenhandmadeCompany/' target="_blank">
             <Facebook fontSize="large" htmlColor='black'/>
           </IconButton>
           <Link to="/cart" style={{ textDecoration: "none" }} >
@@ -38,6 +39,7 @@ const Navbar = () => {
             </IconButton>
           </Link>
         </Icons>
+        </div>
       </StyledToolbar>
     </AppBar>
   )
