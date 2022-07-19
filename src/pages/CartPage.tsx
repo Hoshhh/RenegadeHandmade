@@ -27,7 +27,9 @@ const CartPage = (props: CartProps) => {
 
     const EmptyCart = () => {
         return (
-            <Typography variant="subtitle1" >You have no items in your cart.</Typography>
+            <Typography variant="subtitle1" >You have no items in your cart,
+                <Link to="/products" style={{ textDecoration: "none", color: "#16a085" }}> checkout our products!</Link>
+            </Typography>
         )
     }
 
@@ -68,7 +70,7 @@ const CartPage = (props: CartProps) => {
     
   return (
     <Container>
-        <Typography variant="h4" sx={{marginTop: "3%"}}>Your Shopping Cart</Typography>
+        <Typography variant="h4" gutterBottom sx={{marginTop: "3%"}}>Your Shopping Cart</Typography>
         { isEmpty ? <EmptyCart /> : <FilledCart />}
     </Container>
   )

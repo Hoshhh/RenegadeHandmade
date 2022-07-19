@@ -2,6 +2,7 @@ import { Email, Facebook, Phone } from '@mui/icons-material'
 import { Button, IconButton, Paper, Typography } from '@mui/material'
 import { Container } from '@mui/system'
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const ContactPage = () => {
   return (
@@ -26,7 +27,9 @@ const ContactPage = () => {
                     <Typography component='a' href='https://www.facebook.com/RenhandmadeCompany/' target="_blank" variant='h6' sx={{ marginLeft: '10px', color: 'black', '&:hover': {color: "#1abc9c"}, textDecoration: "none" }}>@RenhandmadeCompany</Typography>
                 </div>
                 <div style={{ display: 'flex', width: '100%', justifyContent: 'center', marginTop: '40px' }}>
-                    <Button variant='contained' sx={{ backgroundColor: "#16a085", '&:hover': {backgroundColor: "#1abc9c"} }}>Home</Button>
+                    <Link to="/" style={{ textDecoration: "none" }}>
+                        <Button variant='contained' sx={{ backgroundColor: "#16a085", '&:hover': {backgroundColor: "#1abc9c"} }}>Home</Button>
+                    </Link>
                 </div>
             </div>
         </Paper>
