@@ -27,7 +27,7 @@ const CartPage = (props: CartProps) => {
 
     const EmptyCart = () => {
         return (
-            <Typography variant="subtitle1" >You have no items in your cart,
+            <Typography variant="subtitle1" style={{marginTop: "30px"}}>You have no items in your cart,
                 <Link to="/products" style={{ textDecoration: "none", color: "#16a085" }}> checkout our products!</Link>
             </Typography>
         )
