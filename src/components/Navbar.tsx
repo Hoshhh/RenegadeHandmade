@@ -28,7 +28,7 @@ const Navbar = () => {
         <div style={{ display: 'flex'}}>
           <Button component={Link} to='/contact' variant="contained" size="small" sx={{ display: { xs: "none", sm: "block"}, margin: "auto", marginRight: "0px", backgroundColor: "black", '&:hover': {backgroundColor: "#34495e"}}}>Contact</Button>
           <Icons>
-          <IconButton href='https://www.facebook.com/RenhandmadeCompany/' target="_blank">
+          <IconButton href='https://www.google.com/' target="_blank">
             <Facebook fontSize="large" htmlColor='black' sx={{ display: { xs: "none", sm: "block"} }}/>
           </IconButton>
           <Link to="/cart" style={{ textDecoration: "none" }} >
