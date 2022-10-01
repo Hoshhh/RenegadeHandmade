@@ -14,17 +14,17 @@ const ContactPage = () => {
                 </div>
                 <div style={{ margin: '20px', display: 'flex', alignItems: 'center' }}>
                     <Phone fontSize='large' sx={{ color: '#16a085', fontSize: {xs: '2rem', sm: '2.1875rem'} }} />
-                    <Typography variant='h6' sx={{ marginLeft: '10px', fontSize: {xs: '1.1rem', sm: '1.25rem'} }}>(606) 791-8326</Typography>
+                    <Typography variant='h6' sx={{ marginLeft: '10px', fontSize: {xs: '1.1rem', sm: '1.25rem'} }}>(xxx) xxx-xxxx</Typography>
                 </div>
                 <div style={{ margin: '20px', display: 'flex', alignItems: 'center' }}>
                     <Email fontSize='large' sx={{ color: '#16a085', fontSize: {xs: '2rem', sm: '2.1875rem'} }} />
-                    <Typography variant='h6' sx={{ marginLeft: '10px', fontSize: {xs: '1.1rem', sm: '1.25rem'} }}>renegadehm@gmail.com</Typography>
+                    <Typography variant='h6' sx={{ marginLeft: '10px', fontSize: {xs: '1.1rem', sm: '1.25rem'} }}>renegade@gmail.com</Typography>
                 </div>
                 <div style={{ margin: '20px', display: 'flex', alignItems: 'center' }}>
-                    <IconButton sx={{margin: '0px', padding: '0px'}} href='https://www.facebook.com/RenhandmadeCompany/' target="_blank" >
+                    <IconButton sx={{margin: '0px', padding: '0px'}} href='https://www.google.com/' target="_blank" >
                         <Facebook fontSize='large' sx={{ color: '#16a085', '&:hover': {color: "#1abc9c"}, fontSize: {xs: '2rem', sm: '2.1875rem'} }} />
                     </IconButton>
-                    <Typography component='a' href='https://www.facebook.com/RenhandmadeCompany/' target="_blank" variant='h6' sx={{ marginLeft: '10px', color: 'black', '&:hover': {color: "#1abc9c"}, textDecoration: "none", fontSize: {xs: '1.1rem', sm: '1.25rem'} }}>@RenhandmadeCompany</Typography>
+                    <Typography component='a' href='https://www.google.com/' target="_blank" variant='h6' sx={{ marginLeft: '10px', color: 'black', '&:hover': {color: "#1abc9c"}, textDecoration: "none", fontSize: {xs: '1.1rem', sm: '1.25rem'} }}>@Renegade</Typography>
                 </div>
                 <div style={{ display: 'flex', width: '100%', justifyContent: 'center', marginTop: '40px' }}>
                     <Link to="/" style={{ textDecoration: "none" }}>
